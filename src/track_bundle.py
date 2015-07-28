@@ -20,6 +20,7 @@ def transform_mean(Hs):
   Qs = numpy.array([quaternion_from_matrix(H) for H in Hs])
   for Q0,Q1 in zip(Qs[:-1],Qs[1:]):
     if Q0.dot(Q1) < 0:
+      print Q0.dot(Q1)
       Q1 *= -1.0
   Ts = numpy.array([H[0:3,3] for H in Hs])
   avg_Q = Qs.mean(axis=0)
@@ -77,12 +78,16 @@ class TrackBundle():
           continue
      
       if len(visible_recons) is not 0:
-        avg_T, avg_Q = transform_mean(visible_recons.values())
+        if len(visible_recons) > 1:
+          avg_T, avg_Q = transform_mean(visible_recons.values())
+        else:
+          avg_Q = quaternion_from_matrix(visible_recons.values()[0])
+          avg_T = translation_from_matrix(visible_recons.values()[0])
         tf_b.sendTransform(avg_T, avg_Q, now, self.main_marker + '_bundle', self.base_frame)
         for frame_name, trans in self.bundle_tfs.iteritems():
           H = inverse_matrix(trans)
           T,R = H[0:3,3],quaternion_from_matrix(H)
-          tf_b.sendTransform(T, R, now, frame_name + '_bundle', self.main_marker + '_bundle')
+          tf_b.sendTransform(T, R, now, frame_name[:-5] + '_exp', self.main_marker + '_bundle')
 
       rate.sleep()
       
