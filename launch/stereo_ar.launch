@@ -1,0 +1,9 @@
+<launch>
+  <include ns="left" file="$(find experiment_calib)/launch/ar_track.launch">
+    <arg name="camera" value="/left" />
+  </include>
+  
+  <include ns="right" file="$(find experiment_calib)/launch/ar_track.launch">
+    <arg name="camera" value="/right" />
+  </include>
+</launch>

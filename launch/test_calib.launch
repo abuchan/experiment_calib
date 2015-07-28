@@ -1,0 +1,16 @@
+<launch>
+  <arg name="bagfile" default="$(find experiment_calib)/data/current.bag" />
+
+  <param name="/use_sim_time" value="true"/>
+
+  <!-- Play the bagfile -->
+  <node pkg="rosbag" type="play" name="rosbag" args="--clock --loop $(arg bagfile)" />
+  
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find experiment_calib)/rviz/test_calib.rviz" />
+
+  <node name="camera_rig_to_int_map_pub" pkg="tf" type="static_transform_publisher" args="-0.296699 0.220555 -0.187527 -0.025479 0.108934 -0.408151 0.906034 camera_rig int_map 100" />
+  <node name="camera_rig_to_int_calib_frame_pub" pkg="tf" type="static_transform_publisher" args="-0.200937 0.223598 -0.137129 -0.025431 0.108959 -0.408137 0.906038 camera_rig int_calib_frame 100" />
+  <node name="camera_rig_to_int_ar_marker_0_pub" pkg="tf" type="static_transform_publisher" args="-0.104537 0.218029 -0.158948 -0.025431 0.108959 -0.408137 0.906038 camera_rig int_ar_marker_0 100" />
+  <node name="calib_frame_to_exp_ar0_pub" pkg="tf" type="static_transform_publisher" args="0.070000 0.070000 0.000000 0.000000 0.000000 0.000000 1.000000 calib_frame exp_ar0 100" />
+  <node name="camera_rig_to_usb_cam_pub" pkg="tf" type="static_transform_publisher" args="-0.027155 0.153244 -0.112057 -0.748448 -0.338379 0.245715 0.514732 camera_rig usb_cam 100" />
+</launch>

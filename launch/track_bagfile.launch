@@ -1,0 +1,26 @@
+<launch>
+  <arg name="bagfile" default="$(find experiment_calib)/data/current.bag" />
+
+  <param name="/use_sim_time" value="true"/>
+
+  <!-- Play the bagfile -->
+  <node pkg="rosbag" type="play" name="rosbag" args="--clock --loop $(arg bagfile)" />
+  
+  <node name="left_frame" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 1 world left 100" />
+  <node name="right_frame" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 1 world right 100" />
+  <include file="$(find experiment_calib)/launch/stereo_ar.launch" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find experiment_calib)/rviz/ar_optitrack.rviz" />
+
+  <!--node name="dummy_camera" pkg="servo_control" type="dummy_camera" args="dummy world usb_cam" /-->
+
+  <include file="$(find experiment_calib)/launch/webcam.launch">
+    <arg name="device" value="/dev/video1" />
+  </include>
+
+  <include ns="usb_cam" file="$(find experiment_calib)/launch/ar_track.launch">
+    <arg name="camera" value="/usb_cam" />
+  </include>
+  
+  <node name="usb_cam_frame" pkg="tf" type="static_transform_publisher" args="0 0 0 0 0 0 1 world usb_cam 100" />
+</launch>

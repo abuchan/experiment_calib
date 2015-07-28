@@ -1,0 +1,18 @@
+<launch>
+  <arg name="bundle_markers" value="ar_marker_0 ar_marker_11 ar_marker_22 ar_marker_33 ar_marker_44" />
+
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find experiment_calib)/rviz/test_calib.rviz" />
+
+  <include file="$(find experiment_calib)/launch/webcam.launch">
+    <arg name="device" value="/dev/video1" />
+  </include>
+
+  <include ns="usb_cam" file="$(find experiment_calib)/launch/ar_track.launch">
+    <arg name="camera" value="/usb_cam" />
+  </include>
+
+  <node name="filter" pkg="experiment_calib" type="filter_pose.py" args="usb_cam $(arg bundle_markers)" />
+  
+  <node name="calibrator" pkg="experiment_calib" type="calibrate_bundle.py" args="$(arg bundle_markers)" output="screen" />
+
+</launch>
