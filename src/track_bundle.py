@@ -18,13 +18,16 @@ ORI_THRESH = 0.1
 
 def transform_mean(Hs):
   Qs = numpy.array([quaternion_from_matrix(H) for H in Hs])
-  for Q0,Q1 in zip(Qs[:-1],Qs[1:]):
-    if Q0.dot(Q1) < 0:
-      print Q0.dot(Q1)
-      Q1 *= -1.0
+  avg_Q = Qs[0]
+  for i in range(1,len(Hs)):
+    avg_Q = quaternion_slerp(Qs[i],avg_Q,1.0/(i+1))
+  #for Q0,Q1 in zip(Qs[:-1],Qs[1:]):
+  #  if Q0.dot(Q1) < 0:
+  #    print Q0.dot(Q1)
+  #    Q1 *= -1.0
+  #avg_Q = Qs.mean(axis=0)
+  #avg_Q[3] = (1.0 - (avg_Q[:3]**2).sum())**0.5
   Ts = numpy.array([H[0:3,3] for H in Hs])
-  avg_Q = Qs.mean(axis=0)
-  avg_Q[3] = (1.0 - (avg_Q[:3]**2).sum())**0.5
   avg_T = Ts.mean(axis=0)
   return avg_T, avg_Q
 
