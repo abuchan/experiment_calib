@@ -82,14 +82,16 @@ def avg_transforms(tf_groups):
 if __name__ == '__main__':
   tf_groups = get_tf_groups(sys.argv[1])
   avgs = avg_transforms(tf_groups)
-
+  
+  """
   for tfg, avg in zip(tf_groups,avgs):
     print '%d transforms from \'%s\' to \'%s\'' % (
       len(tfg), tfg[0].header.frame_id, tfg[0].child_frame_id
     )
     print 'Average Transform:'
     print avg.transform
-
+  """
+  
   if len(sys.argv) > 2:
     with rosbag.Bag(sys.argv[2],'w') as outbag:
       tf_msg = TFMessage()

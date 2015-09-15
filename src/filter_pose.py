@@ -6,7 +6,7 @@ import sys
 import numpy
 
 # Number of frames to use for average
-N_FRAMES = 5
+N_FRAMES = 10
 
 # Oldest transform allowed
 TIME_THRESH = rospy.Duration(N_FRAMES * 0.1)

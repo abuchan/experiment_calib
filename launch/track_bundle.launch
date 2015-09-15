@@ -1,5 +1,5 @@
 <launch>
-  <arg name="bundle_markers" value="ar_marker_0 ar_marker_11 ar_marker_22 ar_marker_33 ar_marker_44" />
+  <arg name="bundle_markers" value="ar_marker_0 ar_marker_1 ar_marker_2 ar_marker_3 ar_marker_4" />
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find experiment_calib)/rviz/test_calib.rviz" />
 
@@ -13,6 +13,6 @@
 
   <node name="filter" pkg="experiment_calib" type="filter_pose.py" args="usb_cam $(arg bundle_markers)" />
   
-  <node name="tracker" pkg="experiment_calib" type="track_bundle.py" args="usb_cam $(find experiment_calib)/data/bundle.bag" output="screen" />
+  <node name="tracker" pkg="experiment_calib" type="track_bundle.py" args="usb_cam $(find experiment_calib)/data/trap_hat.bag" output="screen" />
 
 </launch>

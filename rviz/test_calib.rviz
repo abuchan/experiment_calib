@@ -5,6 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
+        - /Camera1
         - /TF1
         - /TF1/Frames1
         - /TF1/Tree1
@@ -53,7 +54,7 @@ Visualization Manager:
     - Class: rviz/Camera
       Enabled: true
       Image Rendering: background and overlay
-      Image Topic: /usb_cam/image_raw
+      Image Topic: /odroid1/usb_cam/image_raw
       Name: Camera
       Overlay Alpha: 0.5
       Queue Size: 2
@@ -78,40 +79,34 @@ Visualization Manager:
       Frame Timeout: 1
       Frames:
         All Enabled: false
-        ar_marker_0:
-          Value: false
-        ar_marker_0_avg:
-          Value: false
-        ar_marker_0_bundle:
-          Value: true
-        ar_marker_0_filt:
-          Value: true
         ar_marker_11:
-          Value: false
+          Value: true
         ar_marker_11_avg:
-          Value: false
+          Value: true
         ar_marker_11_filt:
           Value: true
-        ar_marker_22:
-          Value: false
-        ar_marker_22_avg:
-          Value: false
-        ar_marker_22_filt:
+        ar_marker_13:
           Value: true
-        ar_marker_33:
-          Value: false
-        ar_marker_33_avg:
-          Value: false
-        ar_marker_33_filt:
+        ar_marker_13_avg:
           Value: true
-        ar_marker_44:
-          Value: false
-        ar_marker_44_avg:
-          Value: false
-        ar_marker_44_filt:
+        ar_marker_13_filt:
+          Value: true
+        ar_marker_16:
+          Value: true
+        ar_marker_16_avg:
+          Value: true
+        ar_marker_16_bundle:
+          Value: true
+        ar_marker_16_filt:
+          Value: true
+        ar_marker_17:
+          Value: true
+        ar_marker_17_avg:
+          Value: true
+        ar_marker_17_filt:
           Value: true
         usb_cam:
-          Value: false
+          Value: true
       Marker Scale: 0.2
       Name: TF
       Show Arrows: false
@@ -119,37 +114,30 @@ Visualization Manager:
       Show Names: true
       Tree:
         usb_cam:
-          ar_marker_0:
-            {}
-          ar_marker_0_avg:
-            {}
-          ar_marker_0_bundle:
-            {}
-          ar_marker_0_filt:
-            {}
           ar_marker_11:
             {}
           ar_marker_11_avg:
             {}
           ar_marker_11_filt:
             {}
-          ar_marker_22:
+          ar_marker_13:
             {}
-          ar_marker_22_avg:
+          ar_marker_13_avg:
             {}
-          ar_marker_22_filt:
+          ar_marker_13_filt:
             {}
-          ar_marker_33:
+          ar_marker_16:
             {}
-          ar_marker_33_avg:
+          ar_marker_16_avg:
+            ar_marker_16_bundle:
+              {}
+          ar_marker_16_filt:
             {}
-          ar_marker_33_filt:
+          ar_marker_17:
             {}
-          ar_marker_44:
+          ar_marker_17_avg:
             {}
-          ar_marker_44_avg:
-            {}
-          ar_marker_44_filt:
+          ar_marker_17_filt:
             {}
       Update Interval: 0
       Value: true
@@ -212,5 +200,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1535
-  X: 385
-  Y: 1104
+  X: 65
+  Y: 24
