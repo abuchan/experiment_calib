@@ -1,5 +1,5 @@
 <launch>
-  <arg name="camera" default="/left" />
+  <arg name="camera" default="/usb_cam" />
 
   <arg name="marker_size" default="3.49" />
   <arg name="max_new_marker_error" default="0.08" />
